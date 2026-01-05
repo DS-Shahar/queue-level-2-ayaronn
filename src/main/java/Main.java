@@ -116,6 +116,75 @@ public class Main {
             q.insert(sorted.remove());
         }
     }
+    	public static int MaxQ( Queue <Integer> q) {
+		Queue<Integer> copy = new Queue<>();
+		int max=copy.remove();
+		while(!copy.isEmpty()) {
+			if(copy.remove()>max) {
+				max=copy.remove();
+			}
+			else {
+				copy.remove();
+			}
+			return max;
+		}
+		
+	}
+	public static int digitCount(Queue<integer>q) {
+		Queue<Integer> copy2 = new Queue<>();
+		int count=copy2.remove();
+		while(!copy2.isEmpty()) {
+			copy2.remove();
+			count++;
+			
+		}
+		return count;
+	}
+	public static int digit(int num,int index)
+	{
+		Queue<Integer> copy2 = new Queue<>();
+		if(digitCount(num)<index) {
+			return 0;
+		}
+		for(int i=0;i<(index-1);i++) {
+			num=num/10
+		}
+		num=num%10;
+		return num;
+
+		
+	}
+	public static Queue<Integer>bulidQueue(int[]arr){
+		Queue<Integer>q=new Queue<>
+		for(int i=0;i<arr.length;i++) {
+			q.insert(arr[i]):
+		}
+		return q;
+	}
+	
+	public static Queue<Integer> sort(Queue<Integer>q){
+		for(int i=0;i<10;i++) {
+			a[i]=new Queue<Integer>();
+			
+		}
+		int x=digit(max(q));
+		int num;
+		for (int i = 0; i < x i++) {
+			while(!q.isEmpty()) {
+				num=q.remove();
+				a[digitCount(num,i)].insert(num);
+				
+			}
+		for (int j = 0; j < 10 j++) {
+			while(!a[j].isEmpty()) {
+				q.insert(a[j].remove());
+			}
+			
+		}
+		return q;
+		
+		
+	
 
 
     public static void main(String[] args) {
