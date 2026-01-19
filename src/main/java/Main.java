@@ -182,6 +182,46 @@ public class Main {
 			
 		}
 		return q;
+		    public static int max(Queue<Integer> q) {
+        if (q.isEmpty() || q.head() == 0) {
+            return 0;
+        }
+
+        int max = q.remove();  
+
+        while (!q.isEmpty()) {
+            int current = q.remove();
+
+            if (current == 0) {
+                return max;
+            }
+
+            if (current > max) {
+                max = current;
+            }
+        }
+
+        return 0;
+    }
+    public static Node<Integer> listmax(Queue<Integer> q) {
+        Node<Integer> maxList = new Node<>(-1); 
+        Node<Integer> currentNode = maxList;     
+
+        Queue<Integer> qCopy =copy(q) ;
+
+        while (!q.isEmpty()) {
+
+            int currentMax = max(qCopy);
+
+            if (currentMax != 0) {
+                currentNode.setNext(new Node<>(currentMax)); 
+                currentNode = currentNode.getNext();  
+            }
+        }
+
+        return maxList.getNext();  
+    }	
+			
 		
 		
 	
@@ -213,6 +253,13 @@ public class Main {
         q.insert(2);
 
         System.out.println(sortQueue(q));
+		 int[] a = {2, 3, 2, 5,0, 60, 48, 63, 4};
+        int[] b = {2, 2, 5,0, 60, 4, 63, 4};
+        Queue<Integer> q = buildQueue(a);
+        Queue<Integer> q1 = buildQueue(b);
+        System.out.println(max(q));
+        System.out.println(listmax(q1));
+ 
 
     }
 }
