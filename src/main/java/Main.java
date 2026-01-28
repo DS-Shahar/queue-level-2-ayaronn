@@ -317,6 +317,51 @@ public class Main {
         }
         return bool && tree11d(t.getLeft()) && tree11d(t.getRight());
     }
+
+	public class Main {
+
+    public static int ex12(BinNode<Integer> t) {
+        if (t == null)
+            return 0;
+
+        if (t.getValue() >= 10 && t.getValue() < 100)
+            return 1 + ex12(t.getLeft()) + ex12(t.getRight());
+
+        return ex12(t.getLeft()) + ex12(t.getRight());
+    }
+
+    public static int ex14(BinNode<Integer> t) {
+        if (t == null)
+            return 0;
+
+        if (!t.hasLeft() && !t.hasRight())
+            return 1;
+
+        return ex14(t.getLeft()) + ex14(t.getRight());
+    }
+
+    public static int ex16(BinNode<Integer> t) {
+        if (t == null)
+            return 0;
+
+        if (t.hasLeft() && t.hasRight())
+            return t.getValue() + ex16(t.getLeft()) + ex16(t.getRight());
+
+        return ex16(t.getLeft()) + ex16(t.getRight());
+    }
+
+    public static int ex17(BinNode<Integer> t) {
+        if (t == null)
+            return 0;
+
+        if (t.hasLeft() && t.hasRight() &&
+            t.getLeft().hasLeft() && t.getLeft().hasRight() &&
+            t.getRight().hasLeft() && t.getRight().hasRight())
+            return 1 + ex17(t.getLeft()) + ex17(t.getRight());
+
+        return ex17(t.getLeft()) + ex17(t.getRight());
+    }
+
 			
 			
 		
