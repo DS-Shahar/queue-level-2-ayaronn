@@ -361,6 +361,18 @@ public class Main {
 
         return ex17(t.getLeft()) + ex17(t.getRight());
     }
+	    public static boolean allevenleaves(BinNode<Integer> t){
+        if (t == null) {
+            return true;
+        }
+
+        if (!t.hasLeft() && !t.hasRight()) {
+            return t.getValue() % 2 == 0;
+        }
+
+        return allevenleaves(t.getLeft()) && allevenleaves(t.getRight());
+    }
+		
 
 			
 			
