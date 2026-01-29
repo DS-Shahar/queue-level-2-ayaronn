@@ -372,7 +372,18 @@ public class Main {
 
         return allevenleaves(t.getLeft()) && allevenleaves(t.getRight());
     }
-		
+	   public static boolean rightleftree(BinNode<Integer> t) {
+        if (t == null) {
+            return true;
+        }
+
+        if (t.hasRight() && t.getRight().hasLeft()) {
+            return true;
+        }
+
+        return rightleftree(t.getLeft()) && rightleftree(t.getRight());
+    }
+	
 
 			
 			
