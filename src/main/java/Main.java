@@ -383,6 +383,74 @@ public class Main {
 
         return rightleftree(t.getLeft()) && rightleftree(t.getRight());
     }
+	public static int a10b100(BinNode<Integer> t) {
+    if (t == null)
+        return 0;
+
+    if (t.getValue() >= 10 && t.getValue() < 100)
+        return 1 + a10b100(t.getLeft()) + a10b100(t.getRight());
+
+    return a10b100(t.getLeft()) + a10b100(t.getRight());
+}
+
+public static int twosonsum(BinNode<Integer> t) {
+    if (t == null)
+        return 0;
+
+    if (t.hasLeft() && t.hasRight())
+        return 1 + twosonsum(t.getLeft()) + twosonsum(t.getRight());
+
+    return twosonsum(t.getLeft()) + twosonsum(t.getRight());
+}
+
+public static int leaf(BinNode<Integer> t) {
+    if (t == null)
+        return 0;
+
+    if (!t.hasLeft() && !t.hasRight())
+        return 1;
+
+    return leaf(t.getLeft()) + leaf(t.getRight());
+}
+
+public static int twosonnotleaf(BinNode<Integer> t) {
+    if (t == null)
+        return 0;
+
+    if (t.hasLeft() && t.hasRight() &&
+        (t.getLeft().hasLeft() || t.getLeft().hasRight()) &&
+        (t.getRight().hasLeft() || t.getRight().hasRight()))
+        return 1 + twosonnotleaf(t.getLeft()) + twosonnotleaf(t.getRight());
+
+    return twosonnotleaf(t.getLeft()) + twosonnotleaf(t.getRight());
+}
+
+public static boolean contains(BinNode<Integer> t1, BinNode<Integer> t2) {
+    if (t2 == null)
+        return true;
+
+    if (t1 == null)
+        return false;
+
+    if (t1.getValue().equals(t2.getValue()))
+        return contains(t1, t2.getLeft()) && contains(t1, t2.getRight());
+
+    return contains(t1.getLeft(), t2) || contains(t1.getRight(), t2);
+}
+
+public static boolean ex20(BinNode<Integer> t, int n) {
+    if (n == 0)
+        return true;
+
+    if (t == null)
+        return false;
+
+    if (t.getValue() == n)
+        return ex20(t, n - 1);
+
+    return ex20(t.getLeft(), n) || ex20(t.getRight(), n);
+}
+
 	
 
 			
