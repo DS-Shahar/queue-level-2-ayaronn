@@ -1,5 +1,266 @@
-class Main {
-  public static void main(String[] args) {
-    System.out.println("Hello World!");
-  }
+public class Main {
+    public static Queue<Integer> copy(Queue<Integer> q) {
+        Queue<Integer> newQ = new Queue<>();
+        Queue<Integer> tempQ = new Queue<>();
+
+        while (!q.isEmpty()) {
+            int element = q.remove();
+            tempQ.insert(element);
+            newQ.insert(element);
+        }
+
+        while (!tempQ.isEmpty()) {
+            q.insert(tempQ.remove());
+        }
+
+        return newQ;
+    }
+
+
+    public static boolean isIn(int x, Queue<Integer> q) {
+        Queue<Integer> temp = new Queue<>();
+        boolean found = false;
+
+        while (!q.isEmpty()) {
+            int y = q.remove();
+            if (y == x) found = true;
+            temp.insert(y);
+        }
+
+        while (!temp.isEmpty()) {
+            q.insert(temp.remove());
+        }
+
+        return found;
+    }
+
+
+    public static Queue<Integer> runLengths(Queue<Character> q) {
+        Queue<Integer> result = new Queue<>();
+        Queue<Character> temp = new Queue<>();
+
+        if (q.isEmpty()) return result;
+
+        char prev = q.remove();
+        temp.insert(prev);
+        int count = 1;
+
+        while (!q.isEmpty()) {
+            char curr = q.remove();
+            temp.insert(curr);
+
+            if (curr == prev) {
+                count++;
+            } else {
+                result.insert(count);
+                count = 1;
+                prev = curr;
+            }
+        }
+
+        result.insert(count);
+
+        while (!temp.isEmpty()) {
+            q.insert(temp.remove());
+        }
+
+        return result;
+    }
+
+
+    public static void removeDuplicates(Queue<Integer> q) {
+        Queue<Integer> qCopy = copy(q);
+        Queue<Integer> unique = new Queue<>();
+
+        while (!qCopy.isEmpty()) {
+            int x = qCopy.remove();
+            if (!isIn(x, unique)) {
+                unique.insert(x);
+            }
+        }
+
+        while (!unique.isEmpty()) {
+            q.insert(unique.remove());
+        }
+    }
+
+
+    public static void sortQueue(Queue<Integer> q) {
+        Queue<Integer> sorted = new Queue<>();
+
+        while (!q.isEmpty()) {
+            int min = q.remove();
+            Queue<Integer> temp = new Queue<>();
+            temp.insert(min);
+
+            while (!q.isEmpty()) {
+                int x = q.remove();
+                temp.insert(x);
+                if (x < min) min = x;
+            }
+
+            boolean removed = false;
+            while (!temp.isEmpty()) {
+                int x = temp.remove();
+                if (x == min && !removed) {
+                    removed = true;
+                } else {
+                    q.insert(x);
+                }
+            }
+
+            sorted.insert(min);
+        }
+
+        while (!sorted.isEmpty()) {
+            q.insert(sorted.remove());
+        }
+    }
+    	public static int MaxQ( Queue <Integer> q) {
+		Queue<Integer> copy = new Queue<>();
+		int max=copy.remove();
+		while(!copy.isEmpty()) {
+			if(copy.remove()>max) {
+				max=copy.remove();
+			}
+			else {
+				copy.remove();
+			}
+			return max;
+		}
+		
+	}
+	public static int digitCount(Queue<integer>q) {
+		Queue<Integer> copy2 = new Queue<>();
+		int count=copy2.remove();
+		while(!copy2.isEmpty()) {
+			copy2.remove();
+			count++;
+			
+		}
+		return count;
+	}
+	public static int digit(int num,int index)
+	{
+		Queue<Integer> copy2 = new Queue<>();
+		if(digitCount(num)<index) {
+			return 0;
+		}
+		for(int i=0;i<(index-1);i++) {
+			num=num/10
+		}
+		num=num%10;
+		return num;
+
+		
+	}
+	public static Queue<Integer>bulidQueue(int[]arr){
+		Queue<Integer>q=new Queue<>
+		for(int i=0;i<arr.length;i++) {
+			q.insert(arr[i]):
+		}
+		return q;
+	}
+	
+	public static Queue<Integer> sort(Queue<Integer>q){
+		for(int i=0;i<10;i++) {
+			a[i]=new Queue<Integer>();
+			
+		}
+		int x=digit(max(q));
+		int num;
+		for (int i = 0; i < x i++) {
+			while(!q.isEmpty()) {
+				num=q.remove();
+				a[digitCount(num,i)].insert(num);
+				
+			}
+		for (int j = 0; j < 10 j++) {
+			while(!a[j].isEmpty()) {
+				q.insert(a[j].remove());
+			}
+			
+		}
+		return q;
+		    public static int max(Queue<Integer> q) {
+        if (q.isEmpty() || q.head() == 0) {
+            return 0;
+        }
+
+        int max = q.remove();  
+
+        while (!q.isEmpty()) {
+            int current = q.remove();
+
+            if (current == 0) {
+                return max;
+            }
+
+            if (current > max) {
+                max = current;
+            }
+        }
+
+        return 0;
+    }
+    public static Node<Integer> listmax(Queue<Integer> q) {
+        Node<Integer> maxList = new Node<>(-1); 
+        Node<Integer> currentNode = maxList;     
+
+        Queue<Integer> qCopy =copy(q) ;
+
+        while (!q.isEmpty()) {
+
+            int currentMax = max(qCopy);
+
+            if (currentMax != 0) {
+                currentNode.setNext(new Node<>(currentMax)); 
+                currentNode = currentNode.getNext();  
+            }
+        }
+
+        return maxList.getNext();  
+    }
+			
+			
+		
+		
+	
+
+
+    public static void main(String[] args) {
+
+        Queue<Character> chars = new Queue<>();
+        chars.insert('c');
+        chars.insert('c');
+        chars.insert('a');
+        chars.insert('c');
+
+        System.out.println(runLengths(chars));
+
+        Queue<Integer> nums = new Queue<>();
+        nums.insert(3);
+        nums.insert(5);
+        nums.insert(3);
+        nums.insert(2);
+        nums.insert(5);
+
+        System.out.println(removeDuplicates(nums));
+       
+        Queue<Integer> q = new Queue<>();
+        q.insert(4);
+        q.insert(1);
+        q.insert(3);
+        q.insert(2);
+
+        System.out.println(sortQueue(q));
+		 int[] a = {2, 3, 2, 5,0, 60, 48, 63, 4};
+        int[] b = {2, 2, 5,0, 60, 4, 63, 4};
+        Queue<Integer> q = buildQueue(a);
+        Queue<Integer> q1 = buildQueue(b);
+        System.out.println(max(q));
+        System.out.println(listmax(q1));
+ 
+
+    }
 }
